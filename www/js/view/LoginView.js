@@ -1,4 +1,4 @@
-define(['underscore', 'backbone', 'jquery', 'bootstrap'
+define(['underscore', 'backbone', 'jquery', 'bootstrap',
         'library/CRMApp',
         'library/CRMToken',
         'view/HomeView',
