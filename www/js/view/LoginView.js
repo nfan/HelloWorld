@@ -1,11 +1,11 @@
-define(['underscore', 'backbone', 'jquery',
+define(['underscore', 'backbone', 'jquery', 'bootstrap'
         'library/CRMApp',
         'library/CRMToken',
         'view/HomeView',
         'text!view/LoginView.html!strip'
        ],
        
-       function(_, Backbone, $, CRMApp, CRMToken, HomeView, LoginViewHtml) {
+       function(_, Backbone, $, bootstrap, CRMApp, CRMToken, HomeView, LoginViewHtml) {
        
             var LoginView = Backbone.View.extend({
                 el: 'body',
