@@ -1,32 +1,39 @@
 [Open Files]
 Active File Display Mode=3
-Active File Index=1
-Open File Line0=0
-Open File Line1=6950
-Open File Line2=2
-Open File Line3=948
-Open File Line4=2
-Open File Pos0=0
-Open File Pos1=7140
-Open File Pos2=522
-Open File Pos3=1002
-Open File Pos4=1986
-Open File Window Pos0=0,1,-1,-1,-8,-30,75,75,1260,419
-Open File Window Pos1=2,3,-1,-1,-8,-30,100,100,1285,446
-Open File Window Pos2=0,1,-1,-1,-8,-30,150,150,1335,496
-Open File Window Pos3=0,1,-1,-1,-8,-30,25,25,1210,371
-Open File Window Pos4=0,1,-1,-1,-8,-30,125,125,1310,471
-Open File0=C:\Fan\repo\HelloWorld\www\js\view\ListView.html
-Open File1=C:\Fan\repo\HelloWorld\www\js\view\HomeView.html
-Open File2=C:\Fan\repo\HelloWorld\www\js\view\LoginView.html
-Open File3=C:\Fan\repo\HelloWorld\www\js\view\HomeView.js
-Open File4=C:\Fan\repo\HelloWorld\www\index.html
-Open File5=
+Active File Index=5
+Open File Line0=6950
+Open File Line1=2
+Open File Line2=948
+Open File Line3=2
+Open File Line4=487
+Open File Line5=88
+Open File Pos0=7140
+Open File Pos1=522
+Open File Pos2=1002
+Open File Pos3=2494
+Open File Pos4=752
+Open File Pos5=393
+Open File Window Pos0=0,1,-1,-1,-8,-30,100,100,1285,446
+Open File Window Pos1=0,1,-1,-1,-8,-30,150,150,1335,496
+Open File Window Pos2=0,1,-1,-1,-8,-30,25,25,1210,371
+Open File Window Pos3=0,1,-1,-1,-8,-30,125,125,1310,471
+Open File Window Pos4=0,1,-1,-1,-8,-30,150,150,1335,496
+Open File Window Pos5=2,3,-1,-1,-8,-30,0,0,1185,346
+Open File0=C:\Fan\repo\HelloWorld\www\js\view\HomeView.html
+Open File1=C:\Fan\repo\HelloWorld\www\js\view\LoginView.html
+Open File2=C:\Fan\repo\HelloWorld\www\js\view\HomeView.js
+Open File3=C:\Fan\repo\HelloWorld\www\index.html
+Open File4=C:\Fan\repo\HelloWorld\www\js\view\ListView.js
+Open File5=C:\Fan\eclipse\eclipse.ini
+Open File6=
 Remember Files=1
 
 [Project Information]
 Project Start=DD070900020011000D002C000B00000044
 
 [Folders]
-.\www\js\ - library=1
+.\www\js\=1
+.\www\js\ - view=1
+C:\Fan\repo\HelloWorld\=1
+C:\Fan\repo\HelloWorld\ - www=1
 
