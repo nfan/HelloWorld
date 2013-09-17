@@ -2,9 +2,10 @@ define(['jquery', 'backbone', 'underscore',
         'library/CRMApp',
         'library/CRMStore',
         'library/CRMUtil',
+        'text!view/ListView.html!strip',
         'model/CRMFormDataCollection'
         ],
-        function($, Backbone, _, CRMApp, CRMStore, CRMUtil, CRMFormDataCollection) {
+        function($, Backbone, _, CRMApp, CRMStore, CRMUtil, ListViewTemplate, CRMFormDataCollection) {
 
     var ListView = Backbone.View.extend({
         el:'body',
@@ -35,6 +36,7 @@ define(['jquery', 'backbone', 'underscore',
                 html = compiled_template.list({template: template, formdatas:formData.models});
             }
             
+            html = ListViewTemplate.replace("<!--content_tag-->", html);
             this.$el.html(html);
             return this;
         },

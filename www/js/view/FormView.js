@@ -2,9 +2,10 @@ define(['jquery', 'backbone', 'underscore',
         'library/CRMApp',
         'library/CRMStore',
         'library/CRMUtil',
+        'text!view/FormView.html!strip',
         'model/CRMFormData'
         ],
-        function($, Backbone, _, CRMApp, CRMStore, CRMUtil, CRMFormData) {
+        function($, Backbone, _, CRMApp, CRMStore, CRMUtil, FormViewTemplate, CRMFormData) {
 
     var FormView = Backbone.View.extend({
         el:'body',
@@ -42,6 +43,7 @@ define(['jquery', 'backbone', 'underscore',
                 
             }
             
+            html = FormViewTemplate.replace("<!--content_tag-->", html);
             this.$el.html(html);
             return that;
         },
