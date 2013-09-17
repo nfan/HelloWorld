@@ -33,11 +33,13 @@ define(['underscore', 'backbone', 'jquery',
                     this.$el.html(html);
 
                     //show templates on navigator
+                    var colors = ['b-red', 'b-purple', 'b-lblue', 'b-orange', 'b-green', 'b-blue'];
                     var i = 1;
                     var that = this;
                     _.each(this.templates.models, function(tpl) {
                         //if tpl.get("id") == that.cur_template_id
-                        $('#list').append('<a href="javascript:void(0);" data-template-id="'+tpl.get("id")+'"><div class="starmite-fourth my-tile my-tile-'+i+'">'+tpl.get("name")+'</div></a>');
+                        //$('#list').append('<a href="javascript:void(0);" data-template-id="'+tpl.get("id")+'"><div class="starmite-fourth my-tile my-tile-'+i+'">'+tpl.get("name")+'</div></a>');
+                        $('#list').append('<div class="span4"><div class="f-block '+colors[i%6]+'" style="display:block;"><a href="javascript:void(0);" data-template-id="'+tpl.get("id")+'"><i class="icon-briefcase"></i></a><a href="javascript:void(0);"><h4>'+tpl.get("name")+'</h4></a><p>'+tpl.get("description")+'</p></div></div>');
                         i++;
                     });
                     
