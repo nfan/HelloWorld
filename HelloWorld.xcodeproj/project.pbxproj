@@ -16,7 +16,6 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		2B51633A1783445C00D19BBB /* SyncManager.js in Sources */ = {isa = PBXBuildFile; fileRef = 2B5163391783445C00D19BBB /* SyncManager.js */; };
 		2B51633C1783AEA300D19BBB /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B51633B1783AEA300D19BBB /* test.html */; };
-		2B51633E1783B05B00D19BBB /* layout.css in Resources */ = {isa = PBXBuildFile; fileRef = 2B51633D1783B05B00D19BBB /* layout.css */; };
 		2B5163401783B06E00D19BBB /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 2B51633F1783B06E00D19BBB /* style.css */; };
 		2B5163421783B36900D19BBB /* testdetail.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B5163411783B36900D19BBB /* testdetail.html */; };
 		2B53A90D17814AD700230E76 /* app_upgrade.js in Sources */ = {isa = PBXBuildFile; fileRef = 2B53A90C17814AD700230E76 /* app_upgrade.js */; };
@@ -86,7 +85,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B5163391783445C00D19BBB /* SyncManager.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = SyncManager.js; path = www/js/library/SyncManager.js; sourceTree = "<group>"; };
 		2B51633B1783AEA300D19BBB /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = test.html; path = www/test.html; sourceTree = "<group>"; };
-		2B51633D1783B05B00D19BBB /* layout.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = layout.css; path = www/css/layout.css; sourceTree = "<group>"; };
 		2B51633F1783B06E00D19BBB /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = style.css; path = www/css/style.css; sourceTree = "<group>"; };
 		2B5163411783B36900D19BBB /* testdetail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = testdetail.html; path = www/testdetail.html; sourceTree = "<group>"; };
 		2B53A90C17814AD700230E76 /* app_upgrade.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = app_upgrade.js; path = www/js/library/app_upgrade.js; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 				2B9A25FA1796064D005E628A /* HomeView.js */,
 				2B5163411783B36900D19BBB /* testdetail.html */,
 				2B51633F1783B06E00D19BBB /* style.css */,
-				2B51633D1783B05B00D19BBB /* layout.css */,
 				2B51633B1783AEA300D19BBB /* test.html */,
 				2B5163391783445C00D19BBB /* SyncManager.js */,
 				2B53A90C17814AD700230E76 /* app_upgrade.js */,
@@ -423,7 +420,6 @@
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
 				2B51633C1783AEA300D19BBB /* test.html in Resources */,
-				2B51633E1783B05B00D19BBB /* layout.css in Resources */,
 				2B5163401783B06E00D19BBB /* style.css in Resources */,
 				2B5163421783B36900D19BBB /* testdetail.html in Resources */,
 				2B9A25FD17960690005E628A /* HomeView.html in Resources */,

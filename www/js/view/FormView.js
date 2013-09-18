@@ -16,7 +16,7 @@ define(['jquery', 'backbone', 'underscore',
         events: {
             "click a.linkToList": 'linkToList',
             "click a.linkToEdit": 'linkToEdit',
-            "click a.submit": 'submit'
+            "click button.submit": 'submit'
         },
         initialize: function() {
             _.bindAll(this, 'render', 'resetFormData', 'fetchAndRender');

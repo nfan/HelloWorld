@@ -12,7 +12,7 @@ define(['jquery', 'backbone', 'underscore',
         cur_template_id : 0,
         
         events: {
-            "click a.linkToForm": 'linkToForm',
+            "click button.linkToForm": 'linkToForm',
             "click a.linkToHome": 'linkToHome'
         },
         initialize: function() {
