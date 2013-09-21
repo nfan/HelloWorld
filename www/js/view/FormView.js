@@ -113,21 +113,21 @@ define(['jquery', 'backbone', 'underscore',
                     
                     
                     if (that.state == 'add') {
-                        var newObj = new CRMFormData();
+                        var newObj = {};
                         
                         $("#formdata input").each(function(i, item){
-                            newObj.set($(this).attr("name"), $(this).val());  
+                            newObj[$(this).attr("name")] = $(this).val();  
                         });
                         
                         formDataCollection.create(newObj, {error: function() {
                             alert('failed!');
                         },
-                        success: function () {
-                            
+                        success: function (model, resp) {
+                            that.formdata = model;
                             alert('saved!');
                         }});
                         
-                        that.formdata = newObj;
+                        //that.formdata = newObj;
                         
                     } else if (that.state == 'edit') {
                         $("#formdata input").each(function(i, item){
