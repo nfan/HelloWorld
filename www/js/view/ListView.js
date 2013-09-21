@@ -121,12 +121,11 @@ define(['jquery', 'backbone', 'underscore',
 
                     if (window.confirm("确认删除?")) {
                         
-                        formData = CRMStore.getFormDataCollection(this.cur_template_id);
-                        var model = formData.get(cur_template_id);
-                        var xhr = model.destroy(
-                        );
+                        formData = CRMStore.getFormDataCollection(that.cur_template_id);
+                        var model = formData.get(cur_formdata_id);
+                        var xhr = model.destroy();
                         
-                        if (xhr) {
+                        if (!xhr) {
                             that.render();
                         } else {
                             xhr.done(function() {that.render();});
