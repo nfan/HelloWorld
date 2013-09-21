@@ -24,6 +24,7 @@ define(['jquery', 'backbone', 'underscore',
 
         initialize: function() {
             _.bindAll(this, 'render', 'resetFormData', 'fetchAndRender');
+            this.c_date = new Date();
         },
          
         render: function() {
@@ -70,7 +71,10 @@ define(['jquery', 'backbone', 'underscore',
                     var formDataCollection = CRMStore.getFormDataCollection(that.cur_template_id);
                     
                     if (that.cur_formdata_id == 0) {
-                        that.formdata = new CRMFormData({collection: formDataCollection});
+                        /*var newObj = new CRMFormData({collection: formDataCollection});
+                        formDataCollection.add(newObj);
+                        that.formdata = newObj;*/
+                        that.formdata = new CRMFormData();
                         
                     } else {
                     
@@ -107,21 +111,37 @@ define(['jquery', 'backbone', 'underscore',
                     
                     var formDataCollection = CRMStore.getFormDataCollection(that.cur_template_id);
                     
-                    if (typeof that.formdata == 'undefined') {
-                      that.formdata = new CRMFormData({collection: formDataCollection}); 
-                    }
                     
-                    $("#formdata input").each(function(i, item){
-                        that.formdata.set($(this).attr("name"), $(this).val());  
-                    });
-                    
-                    that.formdata.save(null, {error: function() {
-                        alert('failed!');
-                    },
-                    success: function () {
+                    if (that.state == 'add') {
+                        var newObj = new CRMFormData();
                         
-                        alert('saved!');
-                    }});
+                        $("#formdata input").each(function(i, item){
+                            newObj.set($(this).attr("name"), $(this).val());  
+                        });
+                        
+                        formDataCollection.create(newObj, {error: function() {
+                            alert('failed!');
+                        },
+                        success: function () {
+                            
+                            alert('saved!');
+                        }});
+                        
+                        that.formdata = newObj;
+                        
+                    } else if (that.state == 'edit') {
+                        $("#formdata input").each(function(i, item){
+                            that.formdata.set($(this).attr("name"), $(this).val());  
+                        });
+                        
+                        that.formdata.save(null, {error: function() {
+                            alert('failed!');
+                        },
+                        success: function () {
+                            
+                            alert('saved!');
+                        }});
+                    }
         }
     });
     
