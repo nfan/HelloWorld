@@ -45,7 +45,11 @@ require(['backbone', 'jquery', 'domReady'],
                     require(['library/CRMApp', 'library/ControllerRegister'], function(CRMApp, ControllerRegister) {
                         var app = CRMApp.getInstance();
                         ControllerRegister.getInstance();
-                        app.getRouter().navigateTo('index');
+                        if (window.location.hash=='#index') {
+                        	app.getRouter().login();
+                        } else {
+                        	app.getRouter().navigateTo('index');
+                      	}
                     });
                 }
         
