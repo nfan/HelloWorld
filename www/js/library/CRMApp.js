@@ -71,7 +71,12 @@ function(_, Backbone, CRMToken, CRMStore, CRMUtil) {
         
         that.base_url = "http://fannan.co";
         that.version = "0.0";
-        that.token = new CRMToken("0");
+        var token = that.getToken();
+        if (CRMUtil.isEmpty(token)) {
+        	token = new CRMToken("0");
+      	} 
+      	
+      	that.token = token;
         that.router = new CRMRouter();
         that.controllers = [];
     };
@@ -94,8 +99,11 @@ function(_, Backbone, CRMToken, CRMStore, CRMUtil) {
         if (CRMUtil.isEmpty(CRMApp.token)) {
             var token = CRMStore.read('token');
        
-            if (!empty(token)) {
-                CRMApp.token = token;
+            if (!CRMUtil.isEmpty(token)) {
+            		var t = new CRMToken(token.token, token.ttl);
+                CRMApp.token = t;
+            } else {
+            		CRMApp.token = new CRMToken(0);
             }
         }
         return CRMApp.token;
