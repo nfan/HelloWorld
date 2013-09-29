@@ -97,7 +97,7 @@ function(_, Backbone, CRMToken, CRMStore, CRMUtil) {
     
     CRMApp.getToken = function() {
         if (CRMUtil.isEmpty(CRMApp.token)) {
-            var token = CRMStore.read('token');
+            var token = CRMStore.read('CRMToken');
        
             if (!CRMUtil.isEmpty(token)) {
             		var t = new CRMToken(token.token, token.ttl);
@@ -110,7 +110,7 @@ function(_, Backbone, CRMToken, CRMStore, CRMUtil) {
     };
     
     CRMApp.setToken = function(token) {
-        CRMStore.write('token', token);
+        CRMStore.write('CRMToken', token);
         CRMApp.token = token;
     };
     
