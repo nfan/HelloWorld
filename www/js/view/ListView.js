@@ -11,13 +11,15 @@ define(['jquery', 'backbone', 'underscore',
     var ListView = BaseView.extend({
 
         cur_template_id : 0,
+        q: "",
 
         events: function(){
             return _.extend({}, BaseView.prototype.events,{
                 "click button.linkToView": 'linkToView',
                 "click button.linkToAdd": 'linkToAdd',
                 "click button.linkToEdit": 'linkToEdit',
-                "click button.linkToDelete": 'linkToDelete'
+                "click button.linkToDelete": 'linkToDelete',
+                "click button.linkToSearch": 'linkToSearch'
             });
         },
         
@@ -26,6 +28,8 @@ define(['jquery', 'backbone', 'underscore',
         },
          
         render: function() {
+            var that = this;
+            
             var html = "";
             
             var compiled_template = null;
@@ -39,12 +43,36 @@ define(['jquery', 'backbone', 'underscore',
             }
             
             if (!CRMUtil.isEmpty(compiled_template) && !CRMUtil.isEmpty(template) && !CRMUtil.isEmpty(formData)) {
-                html = compiled_template.list({template: template, formdatas:formData.models});
+            
+                var models = formData.models;
+                if (!CRMUtil.isEmpty(that.q)) {
+                    
+                    models = formData.filter(function(mdl) {
+                        var searchMetas = template.getSearchableMetas();
+                        for(idName in searchMetas) {
+                            if ( !CRMUtil.isEmpty(mdl.get(idName)) ) {
+                                if ( mdl.get(idName).indexOf(that.q) >= 0 ) {
+                                    return true;
+                                }
+                            }
+                        }
+                        return false;
+                    });
+                }
+                html = compiled_template.list({template: template, formdatas: models});
             }
             
             html = ListViewTemplate.replace("<!--content_tag-->", html);
             this.$el.html(html);
+            
+            this.postRender();
+            
             return this;
+        },
+        
+        postRender: function() {
+            $("#inputToSearch_1").val(this.q);
+            $("#inputToSearch_2").val(this.q);
         },
         
         fetchAndRender: function(template_id) {
@@ -142,6 +170,26 @@ define(['jquery', 'backbone', 'underscore',
                     var that = this;
 
                     CRMApp.getRouter().navigateTo("form/add/"+that.cur_template_id);
+        },
+        
+        linkToSearch: function(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+
+                    var that = this;
+                    
+                    var id = evt.target.id;
+                    
+                    if(id == 'linkToSearch_1') {
+                        that.q = $("#inputToSearch_1").val();
+                        
+                    } else {
+                        that.q = $("#inputToSearch_2").val();
+                        
+                    }
+                    
+                    that.render();
+                    
         }
         
     });
