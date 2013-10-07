@@ -5,17 +5,19 @@ define(['jquery', 'backbone', 'underscore',
         'library/CRMUtil',
         'library/CRMConst',
         'text!view/ListView.html!strip',
-        'model/CRMFormDataCollection'
+        'model/CRMFormDataCollection',
+        'view/PaginationSubView'
         ],
-        function($, Backbone, _, BaseView, CRMApp, CRMStore, CRMUtil, CRMConst, ListViewTemplate, CRMFormDataCollection) {
+        function($, Backbone, _, BaseView, CRMApp, CRMStore, CRMUtil, CRMConst, ListViewTemplate, CRMFormDataCollection, PaginationSubView) {
 
     var ListView = BaseView.extend({
 
         cur_template_id : 0,
         q: "",
         s: "",
-        offset: "",
-
+        offset: 0,
+        count: 0,
+        
         events: function(){
             return _.extend({}, BaseView.prototype.events,{
                 "click button.linkToView": 'linkToView',
@@ -23,7 +25,8 @@ define(['jquery', 'backbone', 'underscore',
                 "click button.linkToEdit": 'linkToEdit',
                 "click button.linkToDelete": 'linkToDelete',
                 "click button.linkToSearch": 'linkToSearch',
-                "change select.linkToSort": 'linkToSort'
+                "change select.linkToSort": 'linkToSort',
+                "click button.linkToPage": "linkToPage"
             });
         },
         
@@ -73,6 +76,8 @@ define(['jquery', 'backbone', 'underscore',
                     });
                 }
                 
+                that.count = models.length;
+                
                 if (!CRMUtil.isEmpty(that.offset)) {
                     models = _.last(models, that.offset);
                     models = _.first(models, CRMConst.PER_PAGE);
@@ -91,6 +96,7 @@ define(['jquery', 'backbone', 'underscore',
             return this;
         },
         
+        /* render search, sort, pagination*/
         postRender: function(template, formData) {
             var that = this;
             
@@ -98,10 +104,11 @@ define(['jquery', 'backbone', 'underscore',
             
             $("#linkToSort_1").empty();
             $("#linkToSort_2").empty();
+            $("#divToPagination").empty();
             
             if (!CRMUtil.isEmpty(template)) {
                 var sortables = template.getSortableMetas();
-                var selectOptions = '<option value="">全部</option>';
+                var selectOptions = '<option value="">排序</option>';
                 for(m in sortables) {
                     if (m == that.s) {
                         selectOptions += '<option value="'+sortables[m].id_name+'" selected="selected">'+sortables[m].name+'</option>';
@@ -112,6 +119,9 @@ define(['jquery', 'backbone', 'underscore',
                 }
                 $("#linkToSort_1").append(selectOptions);
                 $("#linkToSort_2").append(selectOptions);
+                
+                var pagination = new PaginationSubView({offset: that.offset, count: that.count});
+                pagination.render();
             }
             
             
@@ -238,6 +248,15 @@ define(['jquery', 'backbone', 'underscore',
 
                     that.s = $('#'+id).val();
 
+                    that.render();
+        },
+        
+                        
+        linkToPage: function(evt) {
+                    var that = this;
+                    var gotoPage = $(evt.target).attr("data-page");
+                    that.offset = parseInt(gotoPage) * CRMConst.PER_PAGE;
+                    
                     that.render();
         }
         

@@ -27,8 +27,13 @@ function(_, Backbone, CRMToken, CRMStore, CRMUtil) {
                 _.bindAll(this, 'navigateTo', 'login', 'home', 'list', 'form');
             },
             
-            navigateTo: function(url) {
-                this.navigate(url, {trigger: true});
+            navigateTo: function(hash) {
+                //trick from https://github.com/jashkenas/backbone/issues/652
+                if (Backbone.history.fragment === hash) {
+                    Backbone.history.loadUrl(hash);
+                } else {
+                    this.navigate(hash, {trigger: true});
+                }
             },
             
             login: function() {
