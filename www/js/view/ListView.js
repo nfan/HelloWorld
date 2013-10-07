@@ -102,8 +102,7 @@ define(['jquery', 'backbone', 'underscore',
             
             $("#inputToSearch").val(this.q);
             
-            $("#linkToSort_1").empty();
-            $("#linkToSort_2").empty();
+            $("#linkToSort").empty();
             $("#divToPagination").empty();
             
             if (!CRMUtil.isEmpty(template)) {
@@ -117,8 +116,7 @@ define(['jquery', 'backbone', 'underscore',
                     }
                     
                 }
-                $("#linkToSort_1").append(selectOptions);
-                $("#linkToSort_2").append(selectOptions);
+                $("#linkToSort").append(selectOptions);
                 
                 var pagination = new PaginationSubView({offset: that.offset, count: that.count});
                 pagination.render();
