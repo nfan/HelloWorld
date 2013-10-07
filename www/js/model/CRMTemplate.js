@@ -19,6 +19,22 @@ define(['underscore', 'backbone', 'jquery',
             }
             
             return ret;
+        },
+        
+        getSortableMetas: function () {
+            var that = this;
+            
+            var ret = {};
+            
+            var meta_metas = $.parseJSON(this.get("meta_metas"));
+            for(idName in meta_metas) {
+                var meta = meta_metas[idName];
+                if (meta.type != CRMConst.FIELD_FILE) {
+                    ret[idName] = meta;
+                }
+            }
+            
+            return ret;
         }
     });
     

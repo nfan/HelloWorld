@@ -3,15 +3,18 @@ define(['jquery', 'backbone', 'underscore',
         'library/CRMApp',
         'library/CRMStore',
         'library/CRMUtil',
+        'library/CRMConst',
         'text!view/ListView.html!strip',
         'model/CRMFormDataCollection'
         ],
-        function($, Backbone, _, BaseView, CRMApp, CRMStore, CRMUtil, ListViewTemplate, CRMFormDataCollection) {
+        function($, Backbone, _, BaseView, CRMApp, CRMStore, CRMUtil, CRMConst, ListViewTemplate, CRMFormDataCollection) {
 
     var ListView = BaseView.extend({
 
         cur_template_id : 0,
         q: "",
+        s: "",
+        offset: "",
 
         events: function(){
             return _.extend({}, BaseView.prototype.events,{
@@ -19,7 +22,8 @@ define(['jquery', 'backbone', 'underscore',
                 "click button.linkToAdd": 'linkToAdd',
                 "click button.linkToEdit": 'linkToEdit',
                 "click button.linkToDelete": 'linkToDelete',
-                "click button.linkToSearch": 'linkToSearch'
+                "click button.linkToSearch": 'linkToSearch',
+                "change select.linkToSort": 'linkToSort'
             });
         },
         
@@ -59,20 +63,58 @@ define(['jquery', 'backbone', 'underscore',
                         return false;
                     });
                 }
+                
+                //to implement asc and desc, need reference to
+                //http://stackoverflow.com/questions/5636812/sorting-strings-in-reverse-order-with-backbone-js
+                
+                if (!CRMUtil.isEmpty(that.s)) {
+                    models = _.sortBy(models, function(mdl) {
+                        return mdl.get(that.s);
+                    });
+                }
+                
+                if (!CRMUtil.isEmpty(that.offset)) {
+                    models = _.last(models, that.offset);
+                    models = _.first(models, CRMConst.PER_PAGE);
+                } else {
+                    models = _.first(models, CRMConst.PER_PAGE);
+                }
+                
                 html = compiled_template.list({template: template, formdatas: models});
             }
             
             html = ListViewTemplate.replace("<!--content_tag-->", html);
             this.$el.html(html);
             
-            this.postRender();
+            this.postRender(template, formData);
             
             return this;
         },
         
-        postRender: function() {
-            $("#inputToSearch_1").val(this.q);
-            $("#inputToSearch_2").val(this.q);
+        postRender: function(template, formData) {
+            var that = this;
+            
+            $("#inputToSearch").val(this.q);
+            
+            $("#linkToSort_1").empty();
+            $("#linkToSort_2").empty();
+            
+            if (!CRMUtil.isEmpty(template)) {
+                var sortables = template.getSortableMetas();
+                var selectOptions = '<option value="">全部</option>';
+                for(m in sortables) {
+                    if (m == that.s) {
+                        selectOptions += '<option value="'+sortables[m].id_name+'" selected="selected">'+sortables[m].name+'</option>';
+                    } else {
+                        selectOptions += '<option value="'+sortables[m].id_name+'">'+sortables[m].name+'</option>';
+                    }
+                    
+                }
+                $("#linkToSort_1").append(selectOptions);
+                $("#linkToSort_2").append(selectOptions);
+            }
+            
+            
         },
         
         fetchAndRender: function(template_id) {
@@ -179,17 +221,24 @@ define(['jquery', 'backbone', 'underscore',
                     var that = this;
                     
                     var id = evt.target.id;
-                    
-                    if(id == 'linkToSearch_1') {
-                        that.q = $("#inputToSearch_1").val();
-                        
-                    } else {
-                        that.q = $("#inputToSearch_2").val();
-                        
-                    }
-                    
+
+                    that.q = $("#inputToSearch").val();
+
                     that.render();
                     
+        },
+        
+        linkToSort: function(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+
+                    var that = this;
+                    
+                    var id = evt.target.id;
+
+                    that.s = $('#'+id).val();
+
+                    that.render();
         }
         
     });

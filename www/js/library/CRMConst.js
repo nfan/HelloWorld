@@ -10,7 +10,8 @@ define(['underscore', 'backbone'], function(_, Backbone) {
         FIELD_SINGLE_RADIO : 6,
         FIELD_MULTIVALUE : 7,
         FIELD_TEXTAREA : 8,
-        FIELD_FILE : 9
+        FIELD_FILE : 9,
+        PER_PAGE: 10
     };
     
     return CRMConst;
